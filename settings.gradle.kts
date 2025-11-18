@@ -39,3 +39,4 @@ includeBuild("build-logic") {
     name = "build-logic-included"
 }
 
+include(":feature:home")

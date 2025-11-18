@@ -3,5 +3,8 @@ plugins {
 }
 
 dependencies {
+    implementation(projects.feature.home)
+    implementation(projects.feature.auth)
 
+    implementation(libs.kotlinx.immutable)
 }

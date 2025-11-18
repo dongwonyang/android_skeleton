@@ -1,12 +1,19 @@
 package com.example.convention.plugin
 
+import com.android.build.gradle.LibraryExtension
+import com.example.convention.configureKotlinAndroid
 import com.example.convention.libs
 import com.example.convention.util.setNamespace
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
 
-private val composeNavigationBundle = listOf("androidx-navigation-compose")
+private val composeNavigationBundle = listOf(
+    "androidx-navigation-compose",
+    "hilt-navigation-compose"
+)
+
 private val composeUiBundle = listOf(
     "androidx-ui",
     "androidx-ui-tooling",
@@ -16,7 +23,6 @@ private val composeUiBundle = listOf(
     "androidx-runtime-android"
 )
 private val composeMaterialBundle = listOf(
-    "androidx-material3",
     "androidx-material3-android"
 )
 
@@ -28,14 +34,18 @@ class FeaturePlugin : Plugin<Project> {
                 apply("org.jetbrains.kotlin.android")
                 apply("org.jetbrains.kotlin.kapt")
                 apply("org.jetbrains.kotlin.plugin.compose")
+                apply("org.jetbrains.kotlin.plugin.serialization")
             }
 
             setNamespace(path.replace(":", ".").removePrefix("."))
 
-            val libs = extensions.libs
+            extensions.configure<LibraryExtension> {
+                configureKotlinAndroid(this)
+            }
+
+                val libs = extensions.libs
 
             dependencies {
-                add("implementation", project(":core:local"))
                 add("implementation", project(":core:designsystem"))
                 add("implementation", project(":core:model"))
                 add("implementation", project(":core:navigation"))
@@ -59,6 +69,8 @@ class FeaturePlugin : Plugin<Project> {
                 composeMaterialBundle.forEach { libName ->
                     add("implementation", libs.findLibrary(libName).get().get())
                 }
+
+                add("implementation",libs.findLibrary("kotlinx-serialization-json").get().get())
             }
 
             pluginManager.apply("com.google.dagger.hilt.android")

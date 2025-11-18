@@ -5,8 +5,6 @@ import com.android.build.api.dsl.LibraryExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
-import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
-import org.gradle.api.artifacts.VersionCatalog
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -36,9 +34,9 @@ internal fun Project.configureKotlinAndroid(ext: LibraryExtension) {
 
 // 공통 속성
 private fun Project.configureBaseAndroid(
-    compileSdkVersion: Int = 34,
+    compileSdkVersion: Int = 36,
     minSdkVersion: Int = 24,
-    targetSdkVersion: Int = 34,
+    targetSdkVersion: Int = 36,
     testRunner: String = "androidx.test.runner.AndroidJUnitRunner"
 ) {
     // Application
@@ -71,8 +69,8 @@ private fun Project.configureBaseAndroid(
 
     // Kotlin JVM 옵션 설정
     tasks.withType<KotlinCompile>().configureEach {
-        kotlinOptions {
-            jvmTarget = JavaVersion.VERSION_17.toString()
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
         }
     }
 }

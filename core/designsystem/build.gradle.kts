@@ -1,5 +1,11 @@
 plugins {
     alias(libs.plugins.example.core)
+    alias(libs.plugins.kotlin.compose)
+}
+android {
+    buildFeatures {
+        compose = true
+    }
 }
 
 dependencies {

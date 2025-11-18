@@ -25,15 +25,15 @@ internal fun Project.configureComposeAndroid(ext: ApplicationExtension) {
         libs.findVersion("composeCompiler").get().requiredVersion
 
     dependencies {
-        composeAndroidBundle.forEach { libName ->
-            val lib = libs.findLibrary(libName).get().get()
-            if (libName == "androidx-compose-bom") {
-                add("implementation", platform(lib))
-                add("androidTestImplementation", platform(lib))
-            } else {
-                add("implementation", lib)
-            }
-        }
+//        composeAndroidBundle.forEach { libName ->
+//            val lib = libs.findLibrary(libName).get().get()
+//            if (libName == "androidx-compose-bom") {
+//                add("implementation", platform(lib))
+//                add("androidTestImplementation", platform(lib))
+//            } else {
+//                add("implementation", lib)
+//            }
+//        }
     }
 }
 
@@ -47,13 +47,13 @@ internal fun Project.configureComposeAndroid(ext: LibraryExtension) {
 
     dependencies {
         composeAndroidBundle.forEach { libName ->
-            val lib = libs.findLibrary(libName).get().get()
-            if (libName == "androidx-compose-bom") {
-                add("implementation", platform(lib))
-                add("androidTestImplementation", platform(lib))
-            } else {
-                add("implementation", lib)
-            }
+//            val lib = libs.findLibrary(libName).get().get()
+//            if (libName == "androidx-compose-bom") {
+//                add("implementation", platform(lib))
+//                add("androidTestImplementation", platform(lib))
+//            } else {
+//                add("implementation", lib)
+//            }
         }
     }
 }

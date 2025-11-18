@@ -2,7 +2,6 @@ package com.example.convention.plugin
 
 import com.android.build.gradle.LibraryExtension
 import com.example.convention.configureKotlinAndroid
-import com.example.convention.configureKotlinCoroutine
 import com.example.convention.libs
 import com.example.convention.util.setNamespace
 import org.gradle.api.Plugin
@@ -21,12 +20,12 @@ class AndroidLibraryPlugin : Plugin<Project> {
                 configureKotlinAndroid(this)
             }
 
-            configureKotlinCoroutine()
-
             val libs = extensions.libs
 
             dependencies {
                 add("implementation", libs.findLibrary("timber").get())
+                add("implementation", libs.findLibrary("kotlinx-coroutines-core").get())
+                add("implementation", libs.findLibrary("kotlinx-coroutines-android").get())
             }
         }
     }

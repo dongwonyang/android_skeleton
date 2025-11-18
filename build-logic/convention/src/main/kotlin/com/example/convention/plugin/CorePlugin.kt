@@ -32,6 +32,8 @@ class CorePlugin : Plugin<Project> {
                 // Hilt
                 add("kapt", libs.findLibrary("hilt-compiler").get().get())
                 add("implementation", libs.findLibrary("hilt-android").get().get())
+
+                add("implementation",libs.findLibrary("kotlinx-serialization-json").get().get())
             }
 
             pluginManager.apply("com.google.dagger.hilt.android")
