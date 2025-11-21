@@ -1,8 +1,6 @@
 package com.example.convention.plugin
 
 import com.android.build.api.dsl.ApplicationExtension
-import com.android.build.gradle.LibraryExtension
-import com.example.convention.configureComposeAndroid
 import com.example.convention.configureKotlinAndroid
 import com.example.convention.libs
 import com.example.convention.util.setNamespace

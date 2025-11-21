@@ -58,6 +58,10 @@ appcompat = "1.7.1"
 material = "1.13.0"
 core = "1.8.0"
 roomKtx = "2.8.3"
+navigationFragment = "2.9.6"
+navigationUiKtx = "2.9.6"
+jetbrainsKotlinJvm = "2.0.21"
+navigationCommonKtx = "2.9.6"
 
 
 [libraries]
@@ -119,6 +123,13 @@ retrofit-bom = { module = "com.squareup.retrofit2:retrofit-bom", version.ref = "
 
 kotlinx-immutable = { group = "org.jetbrains.kotlinx", name = "kotlinx-collections-immutable", version.ref = "kotlinxImmutable" }
 androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomKtx" }
+androidx-navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigationFragment" }
+
+# XML UI
+androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version = "1.7.1" }
+androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
+androidx-navigation-common-ktx = { group = "androidx.navigation", name = "navigation-common-ktx", version.ref = "navigationCommonKtx" }
+
 
 [plugins]
 kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
@@ -135,3 +146,4 @@ example-android-application = { id = "example.android.application", version = "u
 example-android-library = { id = "example.android.library", version = "unspecified" }
 example-core = { id = "example.core", version = "unspecified" }
 example-feature = { id = "example.feature", version = "unspecified" }
+jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }

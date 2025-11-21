@@ -29,7 +29,6 @@ include(":core:data")
 include(":core:local")
 include(":core:network")
 include(":core:model")
-include(":core:navigation")
 include(":core:designsystem")
 include(":feature:main")
 include(":feature:auth")
@@ -40,3 +39,5 @@ includeBuild("build-logic") {
 }
 
 include(":feature:home")
+include(":core:navigation")
+include(":feature:detail")

@@ -26,6 +26,14 @@ private val composeMaterialBundle = listOf(
     "androidx-material3-android"
 )
 
+private val xmlUiBundle = listOf(
+    "androidx-appcompat",
+    "androidx-core-ktx",
+    "androidx-fragment-ktx",
+    "material"
+)
+
+
 class FeaturePlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
@@ -41,6 +49,10 @@ class FeaturePlugin : Plugin<Project> {
 
             extensions.configure<LibraryExtension> {
                 configureKotlinAndroid(this)
+
+                buildFeatures {
+                    viewBinding = true
+                }
             }
 
                 val libs = extensions.libs
@@ -48,8 +60,8 @@ class FeaturePlugin : Plugin<Project> {
             dependencies {
                 add("implementation", project(":core:designsystem"))
                 add("implementation", project(":core:model"))
-                add("implementation", project(":core:navigation"))
                 add("implementation", project(":core:data"))
+                add("implementation", project(":core:navigation"))
 
                 // Hilt
                 add("kapt", libs.findLibrary("hilt-compiler").get().get())
@@ -60,13 +72,18 @@ class FeaturePlugin : Plugin<Project> {
                     add("implementation", libs.findLibrary(libName).get().get())
                 }
 
-                // UI
+                // Compose UI
                 composeUiBundle.forEach { libName ->
                     add("implementation", libs.findLibrary(libName).get().get())
                 }
 
                 // Material3
                 composeMaterialBundle.forEach { libName ->
+                    add("implementation", libs.findLibrary(libName).get().get())
+                }
+
+                // XML UI
+                xmlUiBundle.forEach { libName ->
                     add("implementation", libs.findLibrary(libName).get().get())
                 }
 

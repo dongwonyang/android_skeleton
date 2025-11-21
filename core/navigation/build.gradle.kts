@@ -2,6 +2,6 @@ plugins {
     alias(libs.plugins.example.core)
 }
 
-
-dependencies {
+dependencies{
+    implementation(libs.androidx.navigation.common.ktx)
 }

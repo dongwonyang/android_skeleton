@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.feature.home.HomeFragment"
+        android:label="Home"
+        app:route="home"></fragment>
+
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.feature.detail.DetailFragment"
+        android:label="Detail"
+        app:route="detail"/>
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.feature.home.HomeFragment"
+        android:label="Profile"
+        app:route="profile"/>
+
+    <fragment
+        android:id="@+id/authFragment"
+        android:name="com.example.feature.auth.AuthFragment"
+        android:label="Auth"
+        app:route="auth">
+        <action
+            android:id="@+id/action_login_to_home"
+            app:destination="@id/homeFragment" />
+    </fragment>
+</navigation>
