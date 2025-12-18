@@ -23,7 +23,7 @@ private val composeUiBundle = listOf(
     "androidx-runtime-android"
 )
 private val composeMaterialBundle = listOf(
-    "androidx-material3-android"
+    "androidx-compose-material3"
 )
 
 class FeaturePlugin : Plugin<Project> {
