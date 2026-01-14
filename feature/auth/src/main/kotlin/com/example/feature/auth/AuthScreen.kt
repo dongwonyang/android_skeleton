@@ -1,54 +1,53 @@
 package com.example.feature.auth
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.NavController
-import androidx.navigation.NavGraphBuilder
-import androidx.navigation.NavOptions
-import androidx.navigation.compose.composable
 import com.example.core.designsystem.theme.Dimens
 import com.example.feature.auth.component.LoginContent
+import com.example.feature.auth.model.AuthEffect
+import com.example.feature.auth.model.AuthEvent
 import com.example.feature.auth.model.AuthUiState
 
 @Composable
 internal fun AuthRoute(
     padding: PaddingValues,
     navigateHome: () -> Unit,
-    viewModel: AuthViewModel = hiltViewModel()
+    viewModel: AuthViewModel = hiltViewModel(),
 ) {
-    val uiState = viewModel.uiState.collectAsStateWithLifecycle()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    LaunchedEffect(viewModel.effect) {
+        viewModel.effect.collect { eff ->
+            when (eff) {
+                AuthEffect.NavigateHome -> navigateHome()
+                else -> {}
+            }
+        }
+    }
 
     AuthScreen(
         padding = padding,
-        uiState = uiState.value,
-        onEmailChange = viewModel::onEmailChange,
-        onPasswordChange =  viewModel::onPasswordChange,
-        onLoginClick = viewModel::login,
-        onSignupClick = {},
-        onLoginSuccess = navigateHome
+        uiState = uiState,
+        onEvent = viewModel::onEvent
     )
 }
+
 
 @Composable
 private fun AuthScreen(
     padding: PaddingValues,
     uiState: AuthUiState,
-    onEmailChange: (String) -> Unit,
-    onPasswordChange: (String) -> Unit,
-    onLoginClick: () -> Unit,
-    onSignupClick: () -> Unit,
-    onLoginSuccess: () -> Unit
+    onEvent: (AuthEvent) -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -57,21 +56,13 @@ private fun AuthScreen(
             .padding(Dimens.common)
             .fillMaxSize(),
     ) {
-        when(uiState){
-            is AuthUiState.Login -> {
-                LoginContent(
-                    email = uiState.email,
-                    password = uiState.password,
-                    onEmailChange = onEmailChange,
-                    onPasswordChange =  onPasswordChange,
-                    onLoginClick = onLoginClick,
-                    onSignupClick = {},
-                )
-            }
-            is AuthUiState.OnLogin -> {
-                onLoginSuccess()
-            }
-            else -> {}
-        }
+        LoginContent(
+            email = uiState.email,
+            password = uiState.password,
+            onEmailChange = { onEvent(AuthEvent.EmailChanged(it)) },
+            onPasswordChange = { onEvent(AuthEvent.PasswordChanged(it)) },
+            onLoginClick = { onEvent(AuthEvent.LoginClicked) },
+            onSignupClick = { onEvent(AuthEvent.SignupClicked) },
+        )
     }
 }
