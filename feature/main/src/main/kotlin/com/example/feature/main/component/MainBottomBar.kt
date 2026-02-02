@@ -43,28 +43,28 @@ internal fun MainBottomBar(
     currentTab: MainTab?,
     onTabSelected: (MainTab) -> Unit,
 ) {
+
     AnimatedVisibility(
         visible = visible,
-        enter = fadeIn() + slideIn { IntOffset(0, it.height) },
-        exit = fadeOut() + slideOut { IntOffset(0, it.height) }
+        enter = slideIn { IntOffset(0, it.height) },
+        exit = slideOut { IntOffset(0, it.height) }
     ) {
-        Row(
-            modifier = modifier
-                .fillMaxWidth()
-                .height(64.dp)
-                .background(
-                    color = AppColors.White,
-                    shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)
-                )
-                .padding(horizontal = 44.dp),
-            horizontalArrangement = Arrangement.spacedBy(64.dp),
-        ) {
-            tabs.forEach { tab ->
-                MainBottomBarItem(
-                    tab = tab,
-                    selected = tab == currentTab,
-                    onClick = { onTabSelected(tab) },
-                )
+        Column() {
+            Row(
+                modifier = modifier
+                    .fillMaxWidth()
+                    .height(64.dp)
+                    .background(
+                        color = AppColors.White,
+                    )
+            ) {
+                tabs.forEach { tab ->
+                    MainBottomBarItem(
+                        tab = tab,
+                        selected = tab == currentTab,
+                        onClick = { onTabSelected(tab) },
+                    )
+                }
             }
         }
     }
