@@ -2,7 +2,6 @@ package com.example.feature.auth
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.core.data.repo.AuthRepository
 import com.example.feature.auth.model.AuthEffect
 import com.example.feature.auth.model.AuthEvent
 import com.example.feature.auth.model.AuthUiState
@@ -14,10 +13,11 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import com.example.core.domain.uscecase.AuthUseCase
 
 @HiltViewModel
 class AuthViewModel @Inject constructor(
-    private val authRepository: AuthRepository
+    private val authUseCase: AuthUseCase
 ) : ViewModel() {
     private val _uiState: MutableStateFlow<AuthUiState> = MutableStateFlow(AuthUiState())
     val uiState: StateFlow<AuthUiState> = _uiState
@@ -45,7 +45,7 @@ class AuthViewModel @Inject constructor(
 
     fun login() = viewModelScope.launch {
         uiState.value.let {
-            authRepository.login(it.email, it.password).onSuccess {
+            authUseCase.login(it.email, it.password).onSuccess {
                 _effect.send(AuthEffect.NavigateHome)
             }.onFailure { }
         }

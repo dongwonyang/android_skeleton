@@ -40,3 +40,4 @@ includeBuild("build-logic") {
 }
 
 include(":feature:home")
+include(":core:domain")
