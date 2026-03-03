@@ -1,4 +1,4 @@
-package com.example.core.network.datasource.auth
+package com.example.core.data.datasource.auth
 
 import com.example.core.network.model.ApiResponse
 import com.example.core.network.model.response.LoginResponse

@@ -1,8 +1,8 @@
-package com.example.core.network.di
+package com.example.core.data.di
 
-import com.example.core.network.datasource.auth.AuthDatasource
-import com.example.core.network.datasource.auth.FakeAuthDatasource
-import com.example.core.network.datasource.auth.RetrofitAuthDatasource
+import com.example.core.data.datasource.auth.AuthDatasource
+import com.example.core.data.datasource.auth.FakeAuthDatasource
+import com.example.core.data.datasource.auth.RetrofitAuthDatasource
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
