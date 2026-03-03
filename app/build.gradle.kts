@@ -5,4 +5,5 @@ plugins {
 
 dependencies {
     implementation(projects.feature.main)
+    implementation(projects.core.data)
 }
