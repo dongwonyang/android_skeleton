@@ -58,6 +58,7 @@ appcompat = "1.7.1"
 material = "1.13.0"
 core = "1.8.0"
 roomKtx = "2.8.3"
+jetbrainsKotlinJvm = "2.0.21"
 
 
 [libraries]
@@ -135,3 +136,4 @@ example-android-application = { id = "example.android.application", version = "u
 example-android-library = { id = "example.android.library", version = "unspecified" }
 example-core = { id = "example.core", version = "unspecified" }
 example-feature = { id = "example.feature", version = "unspecified" }
+jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
