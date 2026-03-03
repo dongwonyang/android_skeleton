@@ -20,8 +20,8 @@ android {
 
 dependencies {
     implementation(libs.okhttp.logging)
-    implementation(libs.retrofit.core)
-    implementation(libs.retrofit.kotlin.serialization)
+    api(libs.retrofit.core)
+    api(libs.retrofit.kotlin.serialization)
     implementation(libs.kotlinx.serialization.json)
 }
 

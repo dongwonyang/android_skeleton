@@ -1,7 +1,7 @@
 package com.example.core.data.di
 
-import com.example.core.data.repo.AuthRepository
 import com.example.core.data.repo.AuthRepositoryImpl
+import com.example.core.domain.repo.AuthRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
