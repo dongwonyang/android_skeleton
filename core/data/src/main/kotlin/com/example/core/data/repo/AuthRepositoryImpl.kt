@@ -1,9 +1,9 @@
 package com.example.core.data.repo
 
 import com.example.core.data.mapper.toResult
-import com.example.core.network.datasource.auth.AuthDatasource
-import com.example.core.network.di.FakeDataSource
-import com.example.core.network.model.response.LoginResponse
+import com.example.core.domain.repo.AuthRepository
+import com.example.core.data.datasource.auth.AuthDatasource
+import com.example.core.data.di.FakeDataSource
 import javax.inject.Inject
 
 

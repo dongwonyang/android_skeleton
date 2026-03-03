@@ -1,6 +1,6 @@
 package com.example.core.domain.uscecase
 
-import com.example.core.data.repo.AuthRepository
+import com.example.core.domain.repo.AuthRepository
 import jakarta.inject.Inject
 
 class AuthUseCase @Inject constructor(
